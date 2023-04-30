@@ -1,30 +1,27 @@
-<template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+<template>  
+  <Header />
+
+  <div class="app-wrapper">
+    <div class="app-content pt-3 p-md-3 p-lg-4">
+      <div class="container-xl">
+        <router-view/>
+      </div> <!--//container-fluid-->
+    </div> <!--//app-content--> 
+
+    <Footer />
+  </div> <!--//app-wrapper-->
+
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script lang="ts">
+  import Header from "@/components/layout/Header.vue"
+  import Footer from "@/components/layout/Footer.vue"
+  import { defineComponent } from "vue"
 
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+  export default defineComponent({
+    components:{
+      Header,
+      Footer
+    }
+  })
+</script>
