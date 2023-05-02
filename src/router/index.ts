@@ -5,6 +5,12 @@ const routes: Array<RouteRecordRaw> = [
     path: '/',
     name: 'root',
     component: () => import('@/views/HomeView.vue')
+  },
+  //Page Not Found
+  { 
+    path: '/:pathMatch(.*)',
+    name: 'error404View',
+    component: () => import('@/views/pages/Error404View.vue')
   }
 ]
 
