@@ -26,6 +26,9 @@
   import { defineComponent } from 'vue'
 
   export default defineComponent({
-    name: "Error404View"
+    name: "Error404View",
+    mounted() {
+      document.body.classList.add('app-404-page');
+    },
   })
 </script>

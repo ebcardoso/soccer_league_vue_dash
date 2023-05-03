@@ -2,6 +2,9 @@
   <div v-if="currentRouteName == 'error404View'">
     <router-view/>
   </div>
+  <div v-else-if="currentRouteName == 'authLogin'">
+    <router-view/>
+  </div>
   <div v-else>    
     <Header />
     <div class="app-wrapper">

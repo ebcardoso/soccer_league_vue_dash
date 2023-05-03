@@ -6,6 +6,12 @@ const routes: Array<RouteRecordRaw> = [
     name: 'root',
     component: () => import('@/views/HomeView.vue')
   },
+  //Auth
+  {
+    path: '/auth/login',
+    name: 'authLogin',
+    component: () => import('@/views/auth/LoginView.vue')
+  },
   //Page Not Found
   { 
     path: '/:pathMatch(.*)',
