@@ -9,13 +9,18 @@ const routes: Array<RouteRecordRaw> = [
   //Auth
   {
     path: '/auth/login',
-    name: 'authLogin',
+    name: 'authLoginPath',
     component: () => import('@/views/auth/LoginView.vue')
+  },
+  {
+    path: '/auth/forgot_password',
+    name: 'authForgotPasswordPath',
+    component: () => import('@/views/auth/PasswordForgotView.vue')
   },
   //Page Not Found
   { 
     path: '/:pathMatch(.*)',
-    name: 'error404View',
+    name: 'error404Path',
     component: () => import('@/views/pages/Error404View.vue')
   }
 ]

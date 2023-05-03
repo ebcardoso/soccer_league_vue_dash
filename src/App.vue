@@ -1,8 +1,11 @@
 <template>  
-  <div v-if="currentRouteName == 'error404View'">
+  <div v-if="currentRouteName == 'error404Path'">
     <router-view/>
   </div>
-  <div v-else-if="currentRouteName == 'authLogin'">
+  <div v-else-if="currentRouteName == 'authLoginPath'">
+    <router-view/>
+  </div>
+  <div v-else-if="currentRouteName == 'authForgotPasswordPath'">
     <router-view/>
   </div>
   <div v-else>    
