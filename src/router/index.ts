@@ -1,9 +1,18 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 
+function routerGuarder(to:any, from:any, next:any) {
+  if (localStorage.getItem('access_token')) {
+    next();
+  } else {
+    next('/auth/login');
+  }
+}
+
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'root',
+    beforeEnter: routerGuarder,
     component: () => import('@/views/HomeView.vue')
   },
   //Auth

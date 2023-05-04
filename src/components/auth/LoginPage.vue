@@ -3,31 +3,35 @@
     <div class="col-12 col-md-7 col-lg-6 auth-main-col text-center p-5">
       <div class="d-flex flex-column align-content-end">
         <div class="app-auth-body mx-auto">
-          <div class="app-auth-branding mb-4"><a class="app-logo" href="index.html"><img class="logo-icon me-2" src="/images/app-logo.svg" alt="logo"></a></div>
+          <div class="app-auth-branding mb-4">
+            <router-link to="/auth/login" class="app-logo">
+              <img class="logo-icon me-2" src="/images/app-logo.svg" alt="logo">
+            </router-link>
+          </div>
           <h2 class="auth-heading text-center mb-5">Log in to Portal</h2>
           <div class="auth-form-container text-start">
             <form @submit.prevent="signin" class="auth-form login-form">
               <div class="email mb-3">
                 <label class="sr-only" for="signin-email">Email</label>
-                <input id="signin-email" name="signin-email" type="email" class="form-control signin-email" placeholder="Email address" required>
+                <input v-model="username" id="signin-email" name="signin-email" type="text" class="form-control signin-email" placeholder="Username" required>
               </div>
               <!--//form-group-->
               <div class="password mb-3">
                 <label class="sr-only" for="signin-password">Password</label>
-                <input id="signin-password" name="signin-password" type="password" class="form-control signin-password" placeholder="Password" required>
+                <input v-model="password" id="signin-password" name="signin-password" type="password" class="form-control signin-password" placeholder="Password" required>
                 <div class="extra mt-3 row justify-content-between">
                   <div class="col-6">
-                    <div class="form-check">
+                    <!-- <div class="form-check">
                       <input class="form-check-input" type="checkbox" value="" id="RememberPassword">
                       <label class="form-check-label" for="RememberPassword">
-                      Remember me
+                        Remember me
                       </label>
-                    </div>
+                    </div> -->
                   </div>
                   <!--//col-6-->
                   <div class="col-6">
                     <div class="forgot-password text-end">
-                      <a href="reset-password.html">Forgot password?</a>
+                      <router-link :to="{name:'authForgotPasswordPath'}">Forgot password?</router-link>
                     </div>
                   </div>
                   <!--//col-6-->
@@ -39,7 +43,7 @@
                 <button type="submit" class="btn app-btn-primary w-100 theme-btn mx-auto">Log In</button>
               </div>
             </form>
-            <div class="auth-option text-center pt-5">No Account? Sign up <a class="text-link" href="signup.html" >here</a>.</div>
+            <!-- <div class="auth-option text-center pt-5">No Account? Sign up <a class="text-link" href="signup.html" >here</a>.</div> -->
           </div>
           <!--//auth-form-container-->	
         </div>
@@ -65,17 +69,32 @@
 </template>
 
 <script lang="ts">
+  import AuthService from '@/services/AuthService';
   import { defineComponent } from 'vue'
 
   export default defineComponent({
     name: 'LoginPage',
+    data() {
+      return {
+        username:'',
+        password:''
+      }
+    },
     mounted() {
       document.body.classList.add('app-login');
       document.body.classList.add('p-0');
     },
     methods: {
-      signin() {
-        this.$router.push({ name: "root" });
+      async signin() {
+        await AuthService.signin(this.username, this.password).then(response => {
+          this.username='';
+          this.password='';
+          localStorage.setItem('access_token', response.data.access);
+          localStorage.setItem('refresh_token', response.data.refresh);
+          this.$router.push({ name: "root" });
+        }).catch(e => { 
+          alert("Wrong Password");
+        });
       }
     }
   })
