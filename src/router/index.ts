@@ -1,8 +1,15 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
+import AuthService from '@/services/AuthService'
 
-function routerGuarder(to:any, from:any, next:any) {
-  if (localStorage.getItem('access_token')) {
-    next();
+async function routerGuarder(to:any, from:any, next:any) {
+  const token = localStorage.getItem('access_token');
+  if (token) {
+    await AuthService.verifyToken(token).then(response => {
+      next();
+    }).catch(e => {
+      localStorage.setItem('access_token', '-')
+      next('/auth/login');
+    });
   } else {
     next('/auth/login');
   }

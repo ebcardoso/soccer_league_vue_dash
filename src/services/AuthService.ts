@@ -7,5 +7,11 @@ export default {
       password: password
     }
     return datasource.post('api/auth/jwt/create/', body);
+  },
+  verifyToken(token:string) {
+    const body = {
+      token: token
+    }
+    return datasource.post('api/auth/jwt/verify/', body);
   }
 }
