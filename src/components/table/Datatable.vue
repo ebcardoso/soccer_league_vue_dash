@@ -6,7 +6,7 @@
           <div class="col-auto">
             <form @submit.prevent="search" class="table-search-form row gx-1 align-items-center">
               <div class="col-auto">
-                <input type="text" v-model="search_key" id="search-orders" name="searchorders" class="form-control search-orders" placeholder="Search">
+                <input type="text" v-model="searchKey" id="search-orders" name="searchorders" class="form-control search-orders" placeholder="Search">
               </div>
               <div class="col-auto">
                 <button type="submit" class="btn app-btn-secondary">Search</button>
@@ -30,7 +30,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="(model, index) in datatable?.items" :key="index">
+                <tr v-for="(model, index) in datatable?.tableContent" :key="index">
                   <td class="cell" v-for="(field, index2) in model" :key="index2">{{field}}</td>
                 </tr>
               </tbody>
@@ -41,15 +41,15 @@
 
       <nav class="app-pagination">
         <ul class="pagination justify-content-center">
-          <li class="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+          <li class="page-item" :class="[datatable?.button_previous_active() ? '' : 'disabled']">
+            <button class="page-link" @click="datatable?.previous_page">Previous</button>
           </li>
           <!-- TO DO: Render pagination dinamically -->
-          <li class="page-item active"><a class="page-link" href="#">1</a></li>
+          <!-- <li class="page-item"><a class="page-link" href="#">1</a></li>
           <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item">
-            <a class="page-link" href="#">Next</a>
+          <li class="page-item"><a class="page-link" href="#">3</a></li> -->
+          <li class="page-item" :class="[datatable?.button_next_active() ? '' : 'disabled']">
+            <button class="page-link" @click="datatable?.next_page">Next</button>
           </li>
         </ul>
       </nav><!--//app-pagination-->
@@ -67,12 +67,15 @@
     },
     data() {
       return {
-        search_key: ''
+        searchKey: ''
       }
+    },
+    mounted() {
+      this.search();
     },
     methods: {
       search():void {
-        this.datatable?.filter_items(this.search_key);
+        this.datatable?.filterItems(this.searchKey);
       }
     },
   })
