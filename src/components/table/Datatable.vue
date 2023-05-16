@@ -41,15 +41,18 @@
 
       <nav class="app-pagination">
         <ul class="pagination justify-content-center">
-          <li class="page-item" :class="[datatable?.button_previous_active() ? '' : 'disabled']">
-            <button class="page-link" @click="datatable?.previous_page">Previous</button>
+          <li class="page-item" :class="[button_previous_active() ? '' : 'disabled']">
+            <button class="page-link" @click="previous_page">Previous</button>
           </li>
-          <!-- TO DO: Render pagination dinamically -->
-          <!-- <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li> -->
-          <li class="page-item" :class="[datatable?.button_next_active() ? '' : 'disabled']">
-            <button class="page-link" @click="datatable?.next_page">Next</button>
+
+          <li class="page-item" v-if="(currentPage-2 > 0) && (currentPage-2 <= datatable?.numberOfpages) && !button_next_active()"><a class="page-link" href="#">{{currentPage-2}}</a></li>
+          <li class="page-item" v-if="(currentPage-1 > 0)"><a class="page-link" href="#">{{currentPage-1}}</a></li>
+          <li class="page-item active" v-if="(datatable?.numberOfpages >= 1)"><a class="page-link" href="#">{{currentPage}}</a></li>
+          <li class="page-item" v-if="(currentPage+1 <= datatable?.numberOfpages)"><a class="page-link" href="#">{{currentPage+1}}</a></li>
+          <li class="page-item" v-if="(currentPage+2 <= datatable?.numberOfpages) && !button_previous_active()"><a class="page-link" href="#">{{currentPage+2}}</a></li>
+
+          <li class="page-item" :class="[button_next_active() ? '' : 'disabled']">
+            <button class="page-link" @click="next_page">Next</button>
           </li>
         </ul>
       </nav><!--//app-pagination-->
@@ -67,7 +70,8 @@
     },
     data() {
       return {
-        searchKey: ''
+        searchKey: '',
+        currentPage: 1,
       }
     },
     mounted() {
@@ -75,7 +79,32 @@
     },
     methods: {
       search():void {
-        this.datatable?.filterItems(this.searchKey);
+        this.datatable?.filterItems(this.searchKey, 1);
+        this.currentPage = 1;
+      },
+      previous_page():void {
+        if (this.currentPage != 1) {
+          this.currentPage-=1;
+          this.datatable?.filterItems(this.searchKey, this.currentPage);
+        }
+      },
+      next_page():void {
+        if (this.currentPage < this.datatable?.numberOfpages) {
+          this.currentPage+=1;
+          this.datatable?.filterItems(this.searchKey, this.currentPage);
+        }
+      },
+      button_previous_active():boolean {
+        if (this.currentPage == 1) {
+          return false;
+        }
+        return true;
+      },
+      button_next_active():boolean {
+        if (this.currentPage == this.datatable?.numberOfpages) {
+          return false;
+        }
+        return true;
       }
     },
   })
