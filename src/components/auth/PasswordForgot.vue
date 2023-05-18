@@ -14,7 +14,7 @@
             <form @submit.prevent="resetPassword" class="auth-form resetpass-form">
               <div class="email mb-3">
                 <label class="sr-only" for="reg-email">Your Email</label>
-                <input id="reg-email" name="reg-email" type="email" class="form-control login-email" placeholder="Your Email" required>
+                <input v-model="email" id="reg-email" name="reg-email" type="email" class="form-control login-email" placeholder="Your Email" required>
               </div>
               <!--//form-group-->
               <div class="text-center">
@@ -51,15 +51,26 @@
 
 <script lang="ts">
   import { defineComponent } from 'vue'
+  import AuthService from '@/services/AuthService';
 
   export default defineComponent({
     name: 'PasswordForgot',
+    data() {
+      return {
+        email: ''
+      }
+    },
     mounted() {
       document.body.classList.add('app-reset-password', 'p-0');
     },
     methods: {
-      resetPassword() {
-        this.$router.push({name: 'root'});
+      async resetPassword() {
+        await AuthService.resetPassword(this.email).then(response => {
+          this.email = '';
+          this.$router.push({name: 'authLoginPath'});
+        }).catch(a => {
+          alert('Failure on reset password!');
+        });
       }
     },
   });

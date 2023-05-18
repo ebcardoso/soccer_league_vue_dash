@@ -13,5 +13,11 @@ export default {
       token: token
     }
     return datasource.post('api/auth/jwt/verify/', body);
-  }
+  },
+  resetPassword(email:string) {
+    const body = {
+      email: email
+    }
+    return datasource.post('api/users/reset_password/', body);
+  },
 }
