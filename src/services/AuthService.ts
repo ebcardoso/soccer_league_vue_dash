@@ -20,4 +20,13 @@ export default {
     }
     return datasource.post('api/users/reset_password/', body);
   },
+  resetPasswordConfirm(uid:string, token:string, new_password:string, re_new_password:string) {
+    const body = {
+      uid: uid,
+      token: token,
+      new_password: new_password,
+      re_new_password: re_new_password
+    }
+    return datasource.post('api/users/reset_password_confirm/', body);
+  },
 }

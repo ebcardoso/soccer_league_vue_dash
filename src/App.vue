@@ -8,6 +8,9 @@
   <div v-else-if="currentRouteName == 'authForgotPasswordPath'">
     <router-view/>
   </div>
+  <div v-else-if="currentRouteName == 'authResetPasswordConfirmPath'">
+    <router-view/>
+  </div>
   <div v-else>    
     <Header />
     <div class="app-wrapper">
