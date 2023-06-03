@@ -5,7 +5,7 @@
     </div>
   </div> <!--//row-->
 
-  <form class="settings-form">
+  <form class="settings-form" @submit.prevent="submitForm">
     <div class="row">
       <div v-for="(group, index) in viewmodel?.fieldGroups()" :key="index" :class="['col-12', `col-md-${columnSize}`]">
         <div class="app-card app-card-settings shadow-sm p-4">
@@ -15,8 +15,8 @@
           <!--//col-->
           <hr/>
           <div v-for="(field, index2) in (group.fields)" :key="index2" :class="['mb-3', field.type==='boolean' ? 'form-check' : '']">
-            <BooleanField :label=field.label v-if="field.type === 'boolean'" />
-            <TextField :label=field.label :required=field.required v-else />
+            <BooleanField :field_locals=field v-if="field.type === 'boolean'" />
+            <TextField :field_locals=field v-else />
           </div>
         </div>
         <!--//app-card-->
@@ -49,11 +49,17 @@ export default defineComponent({
   props: {
     viewmodel:Object,
   },
+  emits: ['saveForm'],
   data() {
     return {
       titlePage: this.viewmodel?.getTitleCreate(),
       columnSize: 12/this.viewmodel?.fieldGroups().length
     }
   },
+  methods: {
+    submitForm() {
+      this.$emit('saveForm');
+    }
+  }
 })
 </script>

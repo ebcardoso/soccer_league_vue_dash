@@ -1,6 +1,6 @@
 <template>
-  <label for="setting-input-1" class="form-label"> {{label}} </label>
-  <input type="text" class="form-control" id="setting-input-1" :required="required">
+  <label for="setting-input-1" class="form-label"> {{field_locals?.label}} </label>
+  <input type="text" class="form-control" :id="field_locals?.name" :name="field_locals?.name" :required="field_locals?.required">
 </template>
 
 <script lang="ts">
@@ -9,8 +9,7 @@ import { defineComponent } from 'vue'
 export default defineComponent({
   name: 'TextField',
   props: {
-    label:String,
-    required:Boolean
+    field_locals:Object,
   }
 })
 </script>
