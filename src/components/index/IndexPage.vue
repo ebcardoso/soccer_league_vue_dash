@@ -23,7 +23,7 @@ export default defineComponent({
   data() {
     return {
       titlePage: this.viewmodel?.getTitleIndex(),
-      datasource: this.viewmodel?.getDatasource(),
+      datasource: this.viewmodel?.getDatatable(),
     }
   }
 })

@@ -38,6 +38,13 @@ const routes: Array<RouteRecordRaw> = [
     name: 'authResetPasswordConfirmPath',
     component: () => import('@/views/auth/ResetPasswordConfirmView.vue')
   },
+  //Users
+  {
+    path: '/users',
+    name: 'usersIndexPath',
+    beforeEnter: routerGuarder,
+    component: () => import('@/views/users/UsersIndexView.vue')
+  },
   //Page Not Found
   { 
     path: '/:pathMatch(.*)',
