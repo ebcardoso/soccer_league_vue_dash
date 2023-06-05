@@ -15,8 +15,14 @@
           <!--//col-->
           <hr/>
           <div v-for="(field, index2) in (group.fields)" :key="index2" :class="['mb-3', field.type==='boolean' ? 'form-check' : '']">
-            <BooleanField :field_locals=field v-if="field.type === 'boolean'" />
-            <TextField :field_locals=field v-else />
+            <BooleanField v-if="field.type === 'boolean'"
+              :modelValue="modelFields[field.name]"
+              @update:inputBooleanValue="newValue => modelFields[field.name] = newValue"
+              :fieldLocals=field />
+            <TextField v-else
+              :modelValue="modelFields[field.name]"
+              @update:inputTextValue="newValue => modelFields[field.name] = newValue"
+              :fieldLocals=field />
           </div>
         </div>
         <!--//app-card-->
@@ -48,6 +54,7 @@ export default defineComponent({
   },
   props: {
     viewmodel:Object,
+    modelFields:Object
   },
   emits: ['saveForm'],
   data() {
@@ -57,8 +64,12 @@ export default defineComponent({
     }
   },
   methods: {
-    submitForm() {
-      this.$emit('saveForm');
+    async submitForm() {
+      // this.$emit('saveForm');
+      await this.viewmodel?.saveModel(this.modelFields).then(() => {
+        const destination_route = this.viewmodel?.getRouteIndex();
+        this.$router.push({ name: destination_route });
+      });
     }
   }
 })
