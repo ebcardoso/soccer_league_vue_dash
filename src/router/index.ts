@@ -45,6 +45,12 @@ const routes: Array<RouteRecordRaw> = [
     beforeEnter: routerGuarder,
     component: () => import('@/views/users/UsersIndexView.vue')
   },
+  {
+    path: '/users/new',
+    name: 'usersCreatePath',
+    beforeEnter: routerGuarder,
+    component: () => import('@/views/users/UsersCreateView.vue')
+  },
   //Page Not Found
   { 
     path: '/:pathMatch(.*)',

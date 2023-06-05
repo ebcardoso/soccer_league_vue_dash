@@ -7,4 +7,7 @@ export default {
     const url = 'api/users/?page='+page+'&search='+search;
     return datasource.get<UserListDTO>(url, config);
   },
+  create:(user:User) => {
+    return datasource.post('api/users/', user, config);
+  },
 }
