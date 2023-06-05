@@ -64,12 +64,8 @@ export default defineComponent({
     }
   },
   methods: {
-    async submitForm() {
-      // this.$emit('saveForm');
-      await this.viewmodel?.saveModel(this.modelFields).then(() => {
-        const destination_route = this.viewmodel?.getRouteIndex();
-        this.$router.push({ name: destination_route });
-      });
+    submitForm() {
+      this.$emit('saveForm');     
     }
   }
 })

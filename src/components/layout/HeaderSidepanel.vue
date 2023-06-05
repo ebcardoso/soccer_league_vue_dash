@@ -4,7 +4,9 @@
       <div class="sidepanel-inner d-flex flex-column">
         <a href="#" id="sidepanel-close" class="sidepanel-close d-xl-none">&times;</a>
         <div class="app-branding">
-          <a class="app-logo" href="index.html"><img class="logo-icon me-2" src="/images/app-logo.svg" alt="logo"><span class="logo-text">PORTAL</span></a>
+          <router-link :to="{name: 'root'}" class="app-logo">
+            <img class="logo-icon me-2" src="/images/app-logo.svg" alt="logo"><span class="logo-text">PORTAL</span>
+          </router-link>
         </div><!--//app-branding-->  
       
         <nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">
