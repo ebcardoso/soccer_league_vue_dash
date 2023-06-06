@@ -13,7 +13,7 @@
           </div><!--//col-->
           
           <div class="app-utilities col-auto">
-            <div class="app-utility-item app-notifications-dropdown dropdown">    
+            <div v-if="false" class="app-utility-item app-notifications-dropdown dropdown">    
               <a class="dropdown-toggle no-toggle-arrow" id="notifications-dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false" title="Notifications">
                 <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-bell icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -98,10 +98,10 @@
               
                 <div class="dropdown-menu-footer p-2 text-center">
                   <a href="notifications.html">View all</a>
-                </div>              
+                </div>
               </div><!--//dropdown-menu-->					        
             </div><!--//app-utility-item-->
-            <div class="app-utility-item">
+            <div v-if="false" class="app-utility-item">
               <a href="settings.html" title="Settings">
                 <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-gear icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -109,15 +109,14 @@
                   <path fill-rule="evenodd" d="M8 5.754a2.246 2.246 0 1 0 0 4.492 2.246 2.246 0 0 0 0-4.492zM4.754 8a3.246 3.246 0 1 1 6.492 0 3.246 3.246 0 0 1-6.492 0z"/>
                 </svg>
               </a>
-          </div><!--//app-utility-item-->
-            
-          <div class="app-utility-item app-user-dropdown dropdown">
-            <a class="dropdown-toggle" id="user-dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><img src="/images/user.png" alt="user profile"></a>
+            </div><!--//app-utility-item-->
+            <div class="app-utility-item app-user-dropdown dropdown">
+              <a class="dropdown-toggle" id="user-dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><img src="/images/user.png" alt="user profile"></a>
               <ul class="dropdown-menu" aria-labelledby="user-dropdown-toggle">
-                <li><a class="dropdown-item" href="account.html">Account</a></li>
+                <!-- <li><a class="dropdown-item" href="account.html">Account</a></li>
                 <li><a class="dropdown-item" href="settings.html">Settings</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="login.html">Log Out</a></li>
+                <li><hr class="dropdown-divider"></li> -->
+                <li><a class="dropdown-item" href="/auth/login" v-on:click="logout">Log Out</a></li>
               </ul>
             </div><!--//app-user-dropdown--> 
           </div><!--//app-utilities-->
@@ -128,9 +127,16 @@
 </template>
   
 <script lang="ts">
-  import { defineComponent } from 'vue';
+import { defineComponent } from 'vue';
 
-  export default defineComponent({
-    name: "HeaderInner"
-  })
+export default defineComponent({
+  name: "HeaderInner",
+  methods: {
+    logout() {
+      localStorage.setItem('access_token', '');
+      localStorage.setItem('refresh_token', '');
+      this.$router.push({ name: 'authLoginPath' });
+    }
+  }
+})
 </script>

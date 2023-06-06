@@ -40,7 +40,6 @@ export default class UsersViewmodel {
   fieldGroups() {
     return [
       {title: "User Credentials", fields: this.fields1()},
-      {title: "User Credentials", fields: this.fields1()},
     ]
   }
 
@@ -56,7 +55,7 @@ export default class UsersViewmodel {
   saveModel(model:User) {
     return UsersService.create(model);
   }
-  
+
   findModel(id:string) {
     return UsersService.find(id);
   }
