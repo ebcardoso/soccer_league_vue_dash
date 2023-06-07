@@ -5,14 +5,16 @@ export default class UsersDatatable {
   userListDTO?:UserListDTO;
   columns:Array<string>;
   tableContent:Array<Array<string>>;
+  optionsContent:Array<Object>
+  canShowOptions:boolean;
   numberOfpages:number;
-  show_options:boolean;
 
   constructor() {
     this.columns = ['Username', 'E-Mail',];
     this.tableContent = [];
+    this.optionsContent = [];
+    this.canShowOptions = true;
     this.numberOfpages = 1;
-    this.show_options = true;
   }
 
   async filterItems(search:string, page:number) {
@@ -27,20 +29,15 @@ export default class UsersDatatable {
     this.tableContent = [];
     this.userListDTO?.results.forEach(model => {
       this.tableContent.push([model.username, model.email]);
+      this.optionsContent.push(this.tableOptions(model.id));
     });
   }
 
-  tableOptions(id:number) {
+  tableOptions(id:any) {
     return [
-      {
-        name: 'View',
-      },
-      {
-        name: 'Edit',
-      },
-      {
-        name: 'Delete',
-      }
+      ['View', `/users/${id}`],
+      ['Edit', '#'],
+      ['Delete', '#']
     ]
   }
 }

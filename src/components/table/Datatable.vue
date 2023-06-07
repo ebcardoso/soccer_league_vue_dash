@@ -27,13 +27,13 @@
               <thead>
                 <tr>
                   <th class="cell" v-for="(column, index) in datatable?.columns" :key="index"><center>{{column}}</center></th>
-                  <th class="cell" v-if="datatable?.show_options"></th>
+                  <th class="cell" v-if="datatable?.canShowOptions"></th>
                 </tr>
               </thead>
               <tbody>
                 <tr v-for="(model, index) in datatable?.tableContent" :key="index">
                   <td class="cell" v-for="(field, index2) in model" :key="index2">{{field}}</td>
-                  <td class="cell" v-if="datatable?.show_options"> 
+                  <td class="cell" v-if="datatable?.canShowOptions"> 
                     <center>
                       <div class="dropdown">
                         <div class="dropdown-toggle no-toggle-arrow" data-bs-toggle="dropdown" aria-expanded="false">
@@ -41,10 +41,10 @@
                         </div>
                         <!--//dropdown-toggle-->
                         <ul class="dropdown-menu">
-                          <li v-for="(option, index3) in datatable?.tableOptions(model.id)" :key="index3">
-                            <a class="dropdown-item" href="#">
-                              {{option.name}}
-                            </a>
+                          <li v-for="(option, index3) in datatable?.optionsContent[index]" :key="index3">
+                            <router-link :to="option[1]" class="dropdown-item">
+                              {{option[0]}}
+                            </router-link>
                           </li>
                         </ul>
                       </div>

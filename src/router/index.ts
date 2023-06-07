@@ -7,7 +7,8 @@ async function routerGuarder(to:any, from:any, next:any) {
     await AuthService.verifyToken(token).then(response => {
       next();
     }).catch(e => {
-      localStorage.setItem('access_token', '-')
+      localStorage.setItem('access_token', '')
+      localStorage.setItem('refresh_token', '')
       next('/auth/login');
     });
   } else {
@@ -44,6 +45,12 @@ const routes: Array<RouteRecordRaw> = [
     name: 'usersIndexPath',
     beforeEnter: routerGuarder,
     component: () => import('@/views/users/UsersIndexView.vue')
+  },
+  {
+    path: '/users/:id',
+    name: 'usersShowPath',
+    beforeEnter: routerGuarder,
+    component: () => import('@/views/users/UsersShowView.vue')
   },
   {
     path: '/users/new',
