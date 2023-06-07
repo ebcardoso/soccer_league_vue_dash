@@ -34,11 +34,24 @@
       </div>     
     </div>
     
-    <div class="row" align="right">
+    <div class="row">
       <div class="col-12 col-md-12">
-        <div class="app-card app-card-settings shadow-sm p-4" >
-          <button type="submit" class="btn app-btn-primary" style="align:right">Save</button>
+        <div class="app-card app-card-settings shadow-sm p-4">
+          <div class="app-card-body">
+            <div class="row justify-content-between">
+              <div class="col-auto">
+                <router-link :to="{name: viewmodel?.getRouteIndex()}" class="btn app-btn-secondary">
+                  Return
+                </router-link>                
+              </div>
+              <div class="col-auto">
+                <button type="submit" class="btn app-btn-primary">Save</button>
+              </div>
+            </div>
+          </div>
+          <!--//app-card-body-->
         </div>
+        <!--//app-card-->
       </div>
     </div>
   </form>

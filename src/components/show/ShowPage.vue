@@ -49,6 +49,26 @@
     <!--//col-->
   </div>
   <!--//row-->
+
+  <br/>
+
+  <div class="row">
+    <div class="col-12 col-md-12">
+      <div class="app-card app-card-settings shadow-sm p-4">
+        <div class="app-card-body">
+          <div class="row justify-content-between">
+            <div class="col-auto">
+              <router-link :to="{name: viewmodel?.getRouteIndex()}" class="btn app-btn-secondary">
+                Return
+              </router-link>                
+            </div>
+          </div>
+        </div>
+        <!--//app-card-body-->
+      </div>
+      <!--//app-card-->
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
