@@ -58,6 +58,12 @@ const routes: Array<RouteRecordRaw> = [
     beforeEnter: routerGuarder,
     component: () => import('@/views/users/UsersCreateView.vue')
   },
+  {
+    path: '/users/:id/edit',
+    name: 'usersEditPath',
+    beforeEnter: routerGuarder,
+    component: () => import('@/views/users/UsersEditView.vue')
+  },
   //Page Not Found
   { 
     path: '/:pathMatch(.*)',

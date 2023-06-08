@@ -13,4 +13,7 @@ export default {
   create:(user:User) => {
     return datasource.post('api/users/', user, config);
   },
+  update:(user:User) => {
+    return datasource.patch('api/users/'+user.id+'/', user, config);
+  },
 }

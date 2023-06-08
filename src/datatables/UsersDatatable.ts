@@ -36,7 +36,7 @@ export default class UsersDatatable {
   tableOptions(id:any) {
     return [
       ['View', `/users/${id}`],
-      ['Edit', '#'],
+      ['Edit', `/users/${id}/edit`],
       ['Delete', '#']
     ]
   }

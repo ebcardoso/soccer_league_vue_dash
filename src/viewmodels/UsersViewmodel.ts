@@ -56,6 +56,10 @@ export default class UsersViewmodel {
     return UsersService.create(model);
   }
 
+  editModel(model:User) {
+    return UsersService.update(model);
+  }
+
   findModel(id:string) {
     return UsersService.find(id);
   }

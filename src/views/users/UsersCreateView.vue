@@ -2,7 +2,7 @@
   <Form 
     @save-form="saveModel" 
     :viewmodel=viewmodel 
-    :modelFields=modelFields />
+    :modelFields=model />
 </template>
 
 <script lang="ts">
@@ -19,13 +19,12 @@ export default defineComponent({
   data() {
     return {
       viewmodel: new UsersViewmodel(),
-      name: '',
-      modelFields: { } as User
+      model: { } as User
     }
   },
   methods: {
     async saveModel() {
-      await this.viewmodel?.saveModel(this.modelFields).then(() => {
+      await this.viewmodel?.saveModel(this.model).then(() => {
         const destination_route = this.viewmodel?.getRouteIndex();
         this.$router.push({ name: destination_route });
       });

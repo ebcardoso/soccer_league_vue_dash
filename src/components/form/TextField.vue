@@ -1,6 +1,6 @@
 <template>
   <label class="form-label"> {{fieldLocals?.label}} </label>
-  <input type="text" class="form-control" @input="emitValue" :required="fieldLocals?.required" />
+  <input type="text" class="form-control" :value="modelValue" @input="emitValue" :required="fieldLocals?.required" />
 </template>
 
 <script lang="ts">
