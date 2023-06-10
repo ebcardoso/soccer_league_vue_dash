@@ -16,4 +16,7 @@ export default {
   update:(user:User) => {
     return datasource.patch('api/users/'+user.id+'/', user, config);
   },
+  delete:(id:string) => {
+    return datasource.delete('api/users/'+id, config);
+  },
 }

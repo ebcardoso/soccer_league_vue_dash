@@ -42,9 +42,12 @@
                         <!--//dropdown-toggle-->
                         <ul class="dropdown-menu">
                           <li v-for="(option, index3) in datatable?.optionsContent[index]" :key="index3">
-                            <router-link :to="option[1]" class="dropdown-item">
+                            <router-link :to="option[1]" class="dropdown-item" v-if="option[2] == 0">
                               {{option[0]}}
                             </router-link>
+                            <button class="dropdown-item" @click="deleteItem(option[1])" v-else>
+                              {{option[0]}}
+                            </button>
                           </li>
                         </ul>
                       </div>
@@ -124,7 +127,14 @@
           return false;
         }
         return true;
-      }
+      },
+      async deleteItem(id:string) {
+        if (confirm("Are you sure?") == true) {
+          await this.datatable?.deleteItem(id).then(() => {
+            this.datatable?.filterItems(this.searchKey, this.currentPage);
+          });
+        }
+      },
     },
   })
 </script>

@@ -27,6 +27,7 @@ export default class UsersDatatable {
 
   mapDatatable():void {
     this.tableContent = [];
+    this.optionsContent = [];
     this.userListDTO?.results.forEach(model => {
       this.tableContent.push([model.username, model.email]);
       this.optionsContent.push(this.tableOptions(model.id));
@@ -34,10 +35,18 @@ export default class UsersDatatable {
   }
 
   tableOptions(id:any) {
+    /*Button Label | Address | Type
+      - Type
+        0 - Link
+        1 - Delete */
     return [
-      ['View', `/users/${id}`],
-      ['Edit', `/users/${id}/edit`],
-      ['Delete', '#']
+      ['View', `/users/${id}`, 0],
+      ['Edit', `/users/${id}/edit`, 0],
+      ['Delete', id, 1]
     ]
+  }
+
+  deleteItem(id:string) {
+    return UsersService.delete(id);
   }
 }
