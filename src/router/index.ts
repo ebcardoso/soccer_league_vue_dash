@@ -64,6 +64,13 @@ const routes: Array<RouteRecordRaw> = [
     beforeEnter: routerGuarder,
     component: () => import('@/views/users/UsersEditView.vue')
   },
+  //Teams
+  {
+    path: '/teams',
+    name: 'teamsIndexPath',
+    beforeEnter: routerGuarder,
+    component: () => import('@/views/teams/TeamsIndexView.vue')
+  },
   //Page Not Found
   { 
     path: '/:pathMatch(.*)',
