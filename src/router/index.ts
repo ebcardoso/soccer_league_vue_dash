@@ -77,6 +77,12 @@ const routes: Array<RouteRecordRaw> = [
     beforeEnter: routerGuarder,
     component: () => import('@/views/teams/TeamsShowView.vue')
   },
+  {
+    path: '/teams/new',
+    name: 'teamsCreatePath',
+    beforeEnter: routerGuarder,
+    component: () => import('@/views/teams/TeamsCreateView.vue')
+  },
   //Page Not Found
   { 
     path: '/:pathMatch(.*)',
