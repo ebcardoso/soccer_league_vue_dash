@@ -1,46 +1,41 @@
+import BaseViewmodel from "@/viewmodels/BaseViewmodel";
 import TeamsDatatable from "@/datatables/TeamsDatatable"
 import TeamsService from "@/services/TeamsService";
 import { Team } from "@/models/Team";
 
-export default class TeamsViewmodel {
+export default class TeamsViewmodel extends BaseViewmodel {
   datatable?:TeamsDatatable;
-  titleIndex:string;
-  titleCreate:string;
-  titleEdit:string;
-  titleShow:string;
   model:Team | undefined;
 
   constructor() {
+    super();
     this.datatable = new TeamsDatatable();
-    this.titleIndex = "Soccer Teams";
-    this.titleCreate = "Create Team";
-    this.titleEdit = "Edit Time";
-    this.titleShow = "Describe Team";
   }
 
   getDatatable() {
     return this.datatable;
   }
 
-  getTitleIndex():string {
-    return this.titleIndex;
-  }
-
-  getTitleCreate():string {
-    return this.titleCreate;
-  }
-
-  getTitleEdit():string {
-    return this.titleEdit;
-  }
-
-  getTitleShow():string {
-    return this.titleShow;
-  }
-
   //Route
   getRouteIndex():string {
     return 'teamsIndexPath'
+  }
+
+  //Page Titles
+  getTitleIndex():string {
+    return "Soccer Teams";
+  }
+
+  getTitleCreate():string {
+    return "Create Team";
+  }
+
+  getTitleEdit():string {
+    return "Edit Team";
+  }
+
+  getTitleShow():string {
+    return "Describe Team";
   }
 
   //Form Fields
