@@ -28,6 +28,12 @@ export default defineComponent({
       await this.viewmodel?.saveModel(this.modelFields).then(() => {
         const destination_route = this.viewmodel?.getRouteIndex();
         this.$router.push({ name: destination_route });
+      }).catch(() => {
+        this.viewmodel?.alertMessages.push({
+          title: 'Failure: ',
+          message: 'Error on create team',
+          type: 'danger' //success, warning or danger
+        });
       });
     }
   }
