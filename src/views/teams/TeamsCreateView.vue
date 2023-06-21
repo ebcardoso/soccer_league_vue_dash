@@ -16,12 +16,19 @@ export default defineComponent({
   components: {
     Form,
   },
+  emits: [
+    'update:setPageTitle'
+  ],
   data() {
     return {
       viewmodel: new TeamsViewmodel(),
       name: '',
       modelFields: { } as Team
     }
+  },
+  mounted() {
+    const pageTitle = this.viewmodel?.getTitleCreate();
+    this.$emit('update:setPageTitle', pageTitle);
   },
   methods: {
     async saveModel() {
