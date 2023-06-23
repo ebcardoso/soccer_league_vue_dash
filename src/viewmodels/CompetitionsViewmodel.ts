@@ -56,6 +56,14 @@ export default class CompetitionsViewmodel extends BaseViewmodel {
     return CompetitionsService.create(model);
   }
 
+  editModel(model:Competition) {
+    return CompetitionsService.update(model);
+  }
+
+  findModel(id:string) {
+    return CompetitionsService.find(id);
+  }
+
   //Select Values
   competitionTypes():Array<Array<String>> {
     return [
