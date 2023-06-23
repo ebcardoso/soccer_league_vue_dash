@@ -47,12 +47,12 @@ export default class TeamsDatatable {
     return [
       // ['View', `/competitions/${id}`, 0],
       // ['Edit', `/competitions/${id}/edit`, 0],
-      // ['Delete', id, 1]
+      ['Delete', id, 1]
     ]
   }
 
   deleteItem(id:string) {
-    // return CompetitionsService.delete(id);
+    return CompetitionsService.delete(id);
   }
 
   //Decoding Items

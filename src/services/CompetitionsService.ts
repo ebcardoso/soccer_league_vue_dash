@@ -10,4 +10,7 @@ export default {
   create:(model:Competition) => {
     return datasource.post('competitions/', model, getConfigs());
   },
+  delete:(id:string) => {
+    return datasource.delete('competitions/'+id, getConfigs());
+  }
 }
