@@ -45,7 +45,7 @@ export default class TeamsDatatable {
         0 - Link
         1 - Delete */
     return [
-      // ['View', `/competitions/${id}`, 0],
+      ['View', `/competitions/${id}`, 0],
       ['Edit', `/competitions/${id}/edit`, 0],
       ['Delete', id, 1]
     ]
