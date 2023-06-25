@@ -79,6 +79,12 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/competitions/CompetitionsIndexView.vue')
   },
   {
+    path: '/competitions/:id',
+    name: 'competitionsShowPath',
+    beforeEnter: routerGuarder,
+    component: () => import('@/views/competitions/CompetitionsShowView.vue')
+  },
+  {
     path: '/competitions/new',
     name: 'competitionsCreatePath',
     beforeEnter: routerGuarder,
