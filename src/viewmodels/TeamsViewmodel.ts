@@ -4,18 +4,11 @@ import TeamsService from "@/services/TeamsService";
 import { Team } from "@/models/Team";
 
 export default class TeamsViewmodel extends BaseViewmodel {
-  alertMessages:Array<Object>;
   datatable?:TeamsDatatable;
-  model:Team | undefined;
 
   constructor() {
     super();
-    this.alertMessages = [];
     this.datatable = new TeamsDatatable();
-  }
-
-  getAlertMessages() {
-    return this.alertMessages;
   }
 
   getDatatable() {
