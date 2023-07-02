@@ -1,6 +1,7 @@
 import BaseViewmodel from "@/viewmodels/BaseViewmodel";
 import LeaguesDatatable from "@/datatables/LeaguesDatatable"
 import LeaguesService from "@/services/LeaguesService";
+import CompetitionsService from "@/services/CompetitionsService";
 import { League } from "@/models/League";
 
 export default class LeaguesViewmodel extends BaseViewmodel {
@@ -18,6 +19,10 @@ export default class LeaguesViewmodel extends BaseViewmodel {
   //Route
   getRouteIndex():string {
     return 'leaguesIndexPath'
+  }
+
+  getCreateRoute():string {
+    return 'leaguesCreatePath';
   }
 
   //Page Titles
@@ -47,16 +52,14 @@ export default class LeaguesViewmodel extends BaseViewmodel {
   fields1() {
     return [
       {name: "name", label: "Name:", type: "text", required: true, canShow: true},
-      {name: "name_complete", label: "Full Name:", type: "text", required: true, canShow: true},
-      {name: "stadium", label: "Stadium:", type: "text", required: true, canShow: true},
-      {name: "city", label: "City:", type: "text", required: true, canShow: true},
-      {name: "founded_in", label: "Year of Foundation:", type: "text", required: true, canShow: true},
+      {name: "competition", label: "Competition:", type: "select", options: this.competitionSelect(), required: true, canShow: true, fromApi: true},
+      // {name: "status", label: "Activated?:", type: "boolean", required: true, canShow: true}
     ]
   }
 
   //Form Actions
   saveModel(model:League) {
-    // return LeaguesService.create(model);
+    return LeaguesService.create(model);
   }
 
   editModel(model:League) {
@@ -65,5 +68,10 @@ export default class LeaguesViewmodel extends BaseViewmodel {
 
   findModel(id:string) {
     // return LeaguesService.find(id);
+  }
+
+  //Select Values
+  competitionSelect() {
+    return CompetitionsService.listAll('', 1);
   }
 }

@@ -17,7 +17,11 @@ export default class TeamsViewmodel extends BaseViewmodel {
 
   //Route
   getRouteIndex():string {
-    return 'teamsIndexPath'
+    return 'teamsIndexPath';
+  }
+
+  getCreateRoute():string {
+    return 'teamsCreatePath';
   }
 
   //Page Titles

@@ -128,6 +128,12 @@ const routes: Array<RouteRecordRaw> = [
     beforeEnter: routerGuarder,
     component: () => import('@/views/leagues/LeaguesIndexView.vue')
   },
+  {
+    path: '/leagues/new',
+    name: 'leaguesCreatePath',
+    beforeEnter: routerGuarder,
+    component: () => import('@/views/leagues/LeaguesCreateView.vue')
+  },
   //Page Not Found
   { 
     path: '/:pathMatch(.*)',

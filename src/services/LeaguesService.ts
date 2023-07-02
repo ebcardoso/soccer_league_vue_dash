@@ -7,4 +7,10 @@ export default {
     const url = 'leagues/?page='+page+'&search='+search;
     return datasource.get<LeagueListDTO>(url, getConfigs());
   },
+  create:(model:League) => {
+    return datasource.post('leagues/', model, getConfigs());
+  },
+  delete:(id:string) => {
+    return datasource.delete('leagues/'+id, getConfigs());
+  }
 }

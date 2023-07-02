@@ -29,7 +29,7 @@ export default class LeaguesDatatable {
     this.tableContent = [];
     this.optionsContent = [];
     this.modelListDTO?.results.forEach(model => {
-      this.tableContent.push([model.name, this.mapStatus(model.status), new Date(model.created).toLocaleString()]);
+      this.tableContent.push([model.name, this.mapStatus(model.status), model.created]);
       this.optionsContent.push(this.tableOptions(model.id));
     });
   }
@@ -42,12 +42,12 @@ export default class LeaguesDatatable {
     return [
       // ['View', `/leagues/${id}`, 0],
       // ['Edit', `/leagues/${id}/edit`, 0],
-      // ['Delete', id, 1]
+      ['Delete', id, 1]
     ]
   }
 
   deleteItem(id:string) {
-    // return LeaguesService.delete(id);
+    return LeaguesService.delete(id);
   }
 
   //Map

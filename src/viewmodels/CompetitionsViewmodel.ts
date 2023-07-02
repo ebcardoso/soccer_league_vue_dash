@@ -27,6 +27,10 @@ export default class CompetitionsViewmodel extends BaseViewmodel {
     return 'competitionsIndexPath'
   }
 
+  getCreateRoute():string {
+    return 'competitionsCreatePath';
+  }
+
   //Page Titles
   getTitleIndex():string {
     return "Competitions";
@@ -72,6 +76,6 @@ export default class CompetitionsViewmodel extends BaseViewmodel {
       ['3', 'National'],
       ['4', 'International Clubs'],
       ['5', 'National Teams']
-    ]
+    ];
   }
 }
